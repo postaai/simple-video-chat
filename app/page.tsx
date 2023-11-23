@@ -38,10 +38,14 @@ const VideoChat = () => {
       });
     };
 
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then(startStream)
-      .catch((error) => console.error("Error accessing media devices:", error));
+    if (!!navigator.mediaDevices) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then(startStream)
+        .catch((error) =>
+          console.error("Error accessing media devices:", error)
+        );
+    }
   }, []);
 
   const callPeer = (e: any) => {
